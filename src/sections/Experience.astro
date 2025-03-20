@@ -1,0 +1,116 @@
+---
+//@ts-nocheck
+const experienceData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/experience"
+).then((response) => response.json());
+
+import ColoredHeading from "../components/ColoredHeading.astro";
+---
+
+<section>
+  <div>
+    <div>
+      <ColoredHeading variant="white">experience</ColoredHeading>
+      <h2>{experienceData.heading}</h2>
+      <p>{experienceData.subheading}</p>
+    </div>
+
+    <div class="stats">
+      {
+        experienceData.stats.map((stat) => (
+          <div class="stat-container">
+            <div
+              class="stat"
+              style={`--percent: ${stat.value}`}
+              title={stat.label}
+            />
+            <p>{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background-color: var(--primary-color-01);
+
+    > * {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .stats {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .stat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2xs);
+
+    p {
+      color: var(--secondary-color-03);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  .stat {
+    --p: calc(var(--percent) * 1%);
+    --border-width: 5px;
+    --border-color: var(--secondary-color-02);
+    aspect-ratio: 1;
+    width: 150px;
+    border-radius: calc(Infinity * 1px);
+    border: var(--border-width) solid #0000;
+    background:
+      radial-gradient(
+          circle at 50% calc(var(--border-width) / 2),
+          var(--border-color) calc(var(--border-width) / 2),
+          transparent 0
+        )
+        border-box,
+      linear-gradient(var(--primary-color-01), var(--primary-color-01))
+        padding-box,
+      conic-gradient(var(--border-color) var(--p), #daae3c 0) border-box;
+
+    display: grid;
+    counter-reset: count var(--percent);
+
+    &::before,
+    &::after {
+      grid-area: 1 / 1;
+    }
+
+    &::after {
+      content: counter(count) "%";
+      place-self: center;
+      font-size: var(--step-2);
+      font-weight: var(--font-weight-bold);
+    }
+
+    &::before {
+      content: "";
+      aspect-ratio: 1;
+      border: var(--border-width) solid var(--secondary-color-02);
+      border-radius: calc(Infinity * 1px);
+      width: calc(var(--border-width) * 4);
+      background: var(--primary-color-03);
+      offset-path: border-box;
+      offset-distance: var(--p);
+      offset-anchor: 50% calc(50% - var(--border-width) / 2);
+      /* animation: animate 5s linear infinite; */
+    }
+  }
+
+  @keyframes animate {
+    to {
+      offset-distance: 100%;
+    }
+  }
+</style>

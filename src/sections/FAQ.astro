@@ -1,0 +1,48 @@
+---
+//@ts-nocheck
+
+import ColoredHeading from "../components/ColoredHeading.astro";
+import FAQItem from "../components/FAQItem.astro";
+
+const faqData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/faq"
+).then((response) => response.json());
+
+console.log(faqData);
+---
+
+<section>
+  <div class="faq-container">
+    <ColoredHeading variant="green">FAQ</ColoredHeading>
+    <h2>Customer Questions</h2>
+    <div class="faq-items">
+      {
+        faqData.faq.map((faq) => (
+          <FAQItem question={faq.question} answer={faq.answer} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 0;
+  }
+
+  .faq-container {
+    background-color: var(--secondary-color-01);
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    border-radius: var(--box-border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--space-l);
+  }
+
+  .faq-items {
+    width: min(90%, 600px);
+  }
+</style>

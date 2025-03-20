@@ -1,0 +1,45 @@
+---
+const { variant, type = "heading" } = Astro.props;
+---
+
+<div>
+  <p data-variant={variant} data-type={type}>
+    <slot />
+  </p>
+</div>
+
+<style>
+  p {
+    border-radius: var(--box-border-radius);
+    width: fit-content;
+  }
+
+  [data-variant="yellow"] {
+    background-color: var(--primary-color-01);
+    color: var(--primary-color-03);
+  }
+
+  [data-variant="white"] {
+    background-color: var(--secondary-color-02);
+    color: var(--primary-color-03);
+  }
+
+  [data-variant="black"] {
+    background-color: var(--primary-color-03);
+    color: var(--secondary-color-02);
+  }
+
+  [data-variant="green"] {
+    background-color: var(--primary-color-02);
+    color: var(--secondary-color-02);
+  }
+
+  [data-type="heading"] {
+    padding: 1px 15px;
+    text-transform: uppercase;
+  }
+
+  [data-type="position"] {
+    padding: 4px 21px;
+  }
+</style>

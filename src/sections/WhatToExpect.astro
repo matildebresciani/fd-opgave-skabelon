@@ -1,0 +1,57 @@
+---
+import ColoredHeading from "../components/ColoredHeading.astro";
+import Checkmark from "../icons/checkmark.svg";
+---
+
+<section>
+  <div class="container">
+    <figure class="pseudo">
+      <img src="img/whattoexpect.jpg" alt="" />
+    </figure>
+    <div class="content">
+      <ColoredHeading variant="yellow">We'll Work With You</ColoredHeading>
+      <h2>What To Expect</h2>
+      <p>
+        Our collaboration is built on transparency, efficiency, and measurable
+        results. Together, we create strategies tailored to your unique needs
+        and goals.
+      </p>
+      <ul role="list" class="checked-ul">
+        <li>
+          Collaborate to build actionable strategies that drive sustainable
+          growth and deliver tangible outcomes.
+        </li>
+        <li>
+          Identify opportunities to optimize processes and implement impactful
+          solutions with measurable results.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-m);
+    padding-block-start: var(--space-xl);
+  }
+
+  figure::before {
+    width: 11.4375rem;
+    top: -1.5rem;
+    left: -2rem;
+  }
+
+  .pseudo::after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    width: 18rem;
+    height: 18rem;
+    background-image: var(--dot-pattern);
+    top: -4rem;
+    left: -4rem;
+  }
+</style>

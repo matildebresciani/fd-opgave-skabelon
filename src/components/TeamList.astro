@@ -1,0 +1,35 @@
+---
+//@ts-nocheck
+const employeesData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/employees"
+).then((response) => response.json());
+// console.log(employeesData);
+
+import EmployeeCard from "../components/EmployeeCard.astro";
+
+const { antal = 6 } = Astro.props;
+---
+
+<section>
+  <ul class="employee-list" role="list">
+    {
+      employeesData
+        .slice(0, antal)
+        .map((employee, index) => (
+          <EmployeeCard employee={employee} index={index} />
+        ))
+    }
+  </ul>
+</section>
+
+<style>
+  section {
+    padding-block: var(--space-s);
+  }
+  .employee-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-m);
+    row-gap: var(--space-l);
+  }
+</style>

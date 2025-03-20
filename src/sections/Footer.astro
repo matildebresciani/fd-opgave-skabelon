@@ -1,0 +1,41 @@
+---
+import Logo from "../components/Logo.astro";
+---
+
+<footer>
+  <div>
+    <Logo />
+    <p class="line"></p>
+    <p>
+      ©2022 Consultalk. All rights reserved | Terms of Service | Privacy Policy
+    </p>
+  </div>
+</footer>
+
+<style>
+  @layer components {
+    footer {
+      background-color: var(--primary-color-03);
+      padding: var(--space-s) 0;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-2xs);
+
+        p {
+          color: var(--secondary-color-02);
+        }
+
+        .line {
+          border-top: 1px solid var(--text-grey);
+          height: 1px;
+          width: 100%;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,230 @@
+---
+//@ts-nocheck
+import Button from "../components/Button.astro";
+import Logo from "../components/Logo.astro";
+---
+
+<header>
+  <nav>
+    <Logo />
+    <div class="menu-toggle" aria-label="Toggle navigation">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </div>
+    <ul role="list" class="nav" id="nav-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/case_study">Case Study</a></li>
+      <li><a href="/employees">Team</a></li>
+      <li><a href="/about">About</a></li>
+      <li><button popovertarget="popup">Login</button></li>
+    </ul>
+    <!-- <button popovertarget="popup">Login</button> -->
+  </nav>
+</header>
+
+<div popover id="popup">
+  <h2>Dashboard Login</h2>
+  <div class="input-container">
+    <label for="email">Email adress</label>
+    <input type="email" name="email" />
+    <label for="password">Password</label>
+    <input type="password" name="password" />
+  </div>
+  <Button variant="yellow">Go to Dashboard</Button>
+</div>
+
+<style>
+  @layer components {
+    header {
+      background: rgba(27, 27, 27, 0.91);
+      backdrop-filter: blur(10.5px);
+      padding: var(--space-s) 0;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a {
+        color: var(--secondary-color-02);
+        transition: var(--hover-transition);
+
+        &:hover {
+          color: var(--hover-white);
+        }
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: var(--btn-border-radius);
+      background-color: var(--primary-color-01);
+      color: var(--primary-color-03);
+      padding: 4px 16px;
+      transition: var(--hover-transition);
+
+      &:hover {
+        background-color: #ffe5a2;
+      }
+    }
+
+    #popup {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 3.75rem 3.75rem 3.75rem;
+      background-color: var(--primary-color-03);
+      border-radius: var(--box-border-radius);
+      z-index: -1;
+
+      h2,
+      label {
+        color: var(--secondary-color-02);
+      }
+
+      h2 {
+        margin-block-end: var(--space-s);
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.625rem;
+
+        label {
+          justify-content: start;
+        }
+
+        input {
+          background-color: var(--secondary-color-02);
+          margin-block: 0 var(--space-xs);
+          border-radius: 0.25rem;
+          border: 1px solid #e3e3e3;
+          padding: var(--space-3xs);
+        }
+      }
+    }
+
+    #popup::backdrop {
+      background: #0003;
+      backdrop-filter: blur(4px);
+    }
+
+    [popover] {
+      opacity: 0;
+      translate: 0 -100%;
+
+      transition: 0.6s;
+      transition-property: opacity, display, overlay, translate;
+      transition-behavior: allow-discrete;
+    }
+
+    :popover-open {
+      opacity: 1;
+      translate: 0 0;
+      z-index: 100;
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 100%;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      align-items: center; /* Centrerer linjerne */
+      justify-content: center; /* Centrerer linjerne */
+    }
+
+    .menu-toggle .line {
+      width: 30px;
+      height: 3px;
+      background-color: var(--secondary-color-02);
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(27, 27, 27, 0.9);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+      }
+
+      /* Show the menu toggle icon (hamburger) */
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* When the menu is active, show it */
+      ul.active {
+        display: flex;
+      }
+
+      li {
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+</style>
+
+<script>
+  document.querySelector(".menu-toggle")?.addEventListener("click", toggleMenu);
+
+  function toggleMenu() {
+    const navList = document.getElementById("nav-list");
+    const menuToggle = document.querySelector(".menu-toggle");
+
+    // Check if elements exist before trying to manipulate them
+    if (navList && menuToggle) {
+      // Toggle the visibility of the menu
+      navList.classList.toggle("active");
+
+      // Toggle the transformation of the lines (for hamburger to cross)
+      menuToggle.classList.toggle("active");
+
+      // Select the lines and transform them when menu is active
+      const lines = menuToggle.querySelectorAll(".line");
+      if (menuToggle.classList.contains("active")) {
+        (lines[0] as HTMLElement).style.transform =
+          "rotate(45deg) translate(6px, 6px)";
+        (lines[1] as HTMLElement).style.opacity = "0";
+        (lines[2] as HTMLElement).style.transform =
+          "rotate(-45deg) translate(5px, -5px)";
+      } else {
+        (lines[0] as HTMLElement).style.transform = "rotate(0)";
+        (lines[1] as HTMLElement).style.opacity = "1";
+        (lines[2] as HTMLElement).style.transform = "rotate(0)";
+      }
+    }
+  }
+</script>

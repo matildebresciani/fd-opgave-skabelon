@@ -1,0 +1,35 @@
+---
+import ColoredHeading from "./ColoredHeading.astro";
+
+const { title, heading, backgroundImage } = Astro.props;
+---
+
+<section style={`background-image: url('${backgroundImage}');`}>
+  <div>
+    <ColoredHeading variant="yellow">{title}</ColoredHeading>
+    <h1>
+      {heading}
+    </h1>
+  </div>
+</section>
+
+<style>
+  section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    place-items: start;
+  }
+
+  div {
+    display: flex;
+    max-width: 48rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3xs);
+    border-radius: var(--box-border-radius);
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: var(--space-s);
+  }
+</style>

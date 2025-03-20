@@ -1,0 +1,73 @@
+---
+import ColoredHeading from "../components/ColoredHeading.astro";
+---
+
+<section>
+  <div class="grid">
+    <div>
+      <ColoredHeading variant="green">Our Vision</ColoredHeading>
+      <h2>Turn your ideas into reality.</h2>
+      <p>
+        Capitalize on low hanging fruit to identify a ballpark value added
+        activity beta test. Override the digital divide with additional from
+        DevOps.
+      </p>
+      <ul class="checked-ul">
+        <li>
+          Bring to the table win-win survival strategies to ensure proactive
+          domination. At the end of the day.
+        </li>
+        <li>
+          Capitalize on low hanging fruit to identify a ballpark value added
+          activity to beta test override the digital.
+        </li>
+      </ul>
+    </div>
+    <div>
+      <figure class="pseudo">
+        <img src="img/ourvision.jpg" alt="" />
+      </figure>
+    </div>
+  </div>
+  <div class="flex">
+    <div>
+      <h2>1128+</h2>
+      <p>Successful Work</p>
+    </div>
+    <div>
+      <h2>908+</h2>
+      <p>Team member</p>
+    </div>
+    <div>
+      <h2>258+</h2>
+      <p>Happy Customers</p>
+    </div>
+    <div>
+      <h2>564+</h2>
+      <p>Creative Idea</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: var(--space-2xl);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .pseudo::before {
+    width: 11.4375rem;
+    top: -1.5rem;
+    right: -2rem;
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+//@ts-nocheck
+const { data, activeIndex } = Astro.props;
+---
+
+<ul id="card-list" class="full-width">
+  {
+    data.map(async (item, index) => {
+      const Icon = await import(`../icons/${item.icon}.svg`).then(
+        (module) => module.default
+      );
+
+      return (
+        <li class={index === activeIndex ? "active" : ""}>
+          <Icon />
+          <h4>{item.title}</h4>
+          <p>{item.description}</p>
+          {/* <a href={item.link.url}>{item.link.text}</a> */}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  ul {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    list-style: none;
+    display: flex;
+    gap: var(--space-s);
+    padding-inline: calc(1rem + 50% - 37.5rem);
+    padding-block: 2rem;
+
+    li {
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      background-color: #ebebeb;
+      color: var(--text-black);
+      border-radius: var(--box-border-radius);
+      padding: 45px 39px;
+      flex-basis: min(65%, 400px);
+      flex-shrink: 0;
+      transition: var(--hover-transition);
+      transform-origin: top;
+    }
+  }
+
+  li.active {
+    background-color: var(--primary-color-03);
+    transform: scale(1.08);
+    h4,
+    p {
+      color: var(--secondary-color-02);
+    }
+
+    svg {
+      fill: var(--primary-color-01);
+    }
+  }
+
+  h4 {
+    margin-block-start: var(--space-xs);
+  }
+
+  p {
+    margin-block-start: var(--space-3xs);
+  }
+</style>
+
+<script></script>

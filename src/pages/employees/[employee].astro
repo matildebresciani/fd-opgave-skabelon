@@ -1,0 +1,148 @@
+---
+//@ts-nocheck
+import Layout from "../../layouts/Layout.astro";
+import Subscribe from "../../components/Subscribe.astro";
+
+export async function getStaticPaths() {
+  const employees = await fetch(
+    "https://frontend-design-theme.netlify.app/api/employees"
+  ).then((res) => res.json());
+
+  console.log("Fetched employees:", employees);
+
+  return employees.map((employee) => ({
+    params: { employee: employee.slug }, // [employee]=employee.slug
+    props: { myData: employee }, // send al data med som props
+  }));
+}
+
+const { myData } = Astro.props;
+// console.log(myData); // employee.name osv.
+---
+
+<Layout title={myData.name}>
+  <section>
+    <div class="employee-grid">
+      <figure class="pseudo">
+        <img src={myData.img} alt="" />
+      </figure>
+      <div class="info-container">
+        <div class="employee-info">
+          <div class="title-container">
+            <div>
+              <h3>{myData.name}</h3>
+              <div class="line1"></div>
+              <ul role="list">
+                {
+                  myData.social_links.map((link) => (
+                    <li>
+                      <a href={link.url} set:html={link.icon} />
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <p>{myData.title}</p>
+          </div>
+          <p>{myData.description_long}</p>
+        </div>
+        <div class="line2"></div>
+        <div class="past-experience">
+          <h3>Past Experience</h3>
+          <p>{myData.past_experience}</p>
+        </div>
+      </div>
+    </div>
+    <Subscribe />
+  </section>
+</Layout>
+
+<style>
+  .employee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-l);
+
+    .info-container {
+      display: grid;
+      gap: var(--space-s);
+    }
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    div,
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    div {
+      justify-content: space-between;
+    }
+
+    ul {
+      margin: 0;
+      a {
+        color: var(--primary-color-03);
+      }
+    }
+
+    .line1 {
+      border-left: 1px solid #c1c1c1;
+      width: 1px;
+      height: 2.1875rem;
+    }
+  }
+
+  .line2 {
+    border-top: 1px solid #c1c1c1;
+    height: 1px;
+    width: 100%;
+  }
+
+  .employee-info p:last{
+   {
+      margin-block-start: 5rem;
+    }
+  }
+
+  .past-experience {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .pseudo {
+    position: relative;
+    margin-inline: auto;
+    margin: 3rem;
+    display: block;
+    z-index: 2;
+  }
+
+  .pseudo::before {
+    content: "";
+    background: var(--primary-color-02);
+    width: 14.5625rem;
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  .pseudo::after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    width: 20rem;
+    height: 20rem;
+    background-image: var(--dot-pattern);
+    top: -4rem;
+    left: -6rem;
+  }
+</style>

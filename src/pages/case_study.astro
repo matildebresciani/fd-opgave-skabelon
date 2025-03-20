@@ -1,0 +1,161 @@
+---
+//@ts-nocheck
+import Layout from "../layouts/Layout.astro";
+import Hero2 from "../components/Hero2.astro";
+import Subscribe from "../components/Subscribe.astro";
+import Button from "../components/Button.astro";
+
+const caseData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/caseStudy"
+).then((response) => response.json());
+---
+
+<Layout title="Case Study">
+  <Hero2
+    title="case studies"
+    heading="Taxes & Efficiency"
+    backgroundImage="/img/casestudies-hero.png"
+  />
+  <section class="case_studies">
+    <img src="/img/cs-img1.png" alt="" />
+    <div class="case">
+      <div>
+        <div>
+          <h4>Case Name</h4>
+          <p>Taxes & Efficiency</p>
+        </div>
+        <div>
+          <h4>Category</h4>
+          <p>Business</p>
+        </div>
+        <div>
+          <h4>Date</h4>
+          <p>27th September 2025</p>
+        </div>
+      </div>
+      <Button variant="yellow">Live Preview</Button>
+    </div>
+    <div class="content flow-space">
+      <h2>Project Overview</h2>
+      <p>
+        Carrying out a major operational study allowed us to elevate data
+        handling and streamline core tasks. By engaging each department
+        thoroughly, we minimized wasted energy and promoted transparent
+        communication. These changes empower the workforce to address key goals
+        efficiently while boosting productivity. Advanced resources drive
+        sustained innovation. Frequent reviews keep teams aligned with strategic
+        objectives
+      </p>
+      <ul>
+        <li>
+          It brings the right people together with all the right information and
+          tools to get work done
+        </li>
+        <li>
+          We provide operational efficiency, data security, and flexible scale
+        </li>
+        <li>
+          Your best work, together in one package that works seamlessly from
+          your computer
+        </li>
+        <li>
+          Delivers the tools you need to save time Improve field performance
+          always
+        </li>
+      </ul>
+      <h3>Storyboard</h3>
+      <p>
+        Completely synergize resource taxing relationships via premier niche
+        markets. Professionally cultivate one-to-one customer service with
+        robust ideas. Dynamically innovate resource-leveling customer service
+        for state of the art customer service. Objectively innovate empowered
+        manufactured products whereas parallel platforms. Holistically
+        predominate extensible testing procedures for reliable supply chains.
+      </p>
+      <p>
+        Proactively envisioned multimedia based expertise and cross-media growth
+        strategies. Seamlessly visualize quality intellectual capital without
+        superior collaboration and idea-sharing. Holistically pontificate
+        installed base portals after maintainable products completely pursue
+        scalable customer service.
+      </p>
+      <figure>
+        <img src="/img/cs-img2.png" alt="" />
+      </figure>
+      <h3>Project result</h3>
+      <p>
+        Leverage agile frameworks to provide a robust synopsis for high level
+        overviews. Iterative approaches to corporate strategy foster
+        collaborative thinking to further the overall value proposition.
+        Organically grow the holistic world view of disruptive innovation via
+        workplace diversity and empowerment.
+      </p>
+      <p>
+        Bring to the table win-win survival strategies to ensure proactive
+        domination. At the end of the day, going forward, a new normal that has
+        evolved from generation X is on the runway heading towards a streamlined
+        cloud solution. User generated content in real-time will have multiple
+        touchpoints for offshoring.
+      </p>
+    </div>
+  </section>
+  <Subscribe />
+</Layout>
+
+<style>
+  .case_studies {
+    display: grid;
+    grid-template-columns:
+      1fr [full-start] 1fr [feature-start] 1fr [content-start] minmax(0, 50rem)
+      [content-end] 1fr [feature-end] 1fr [full-end] 1fr;
+  }
+
+  img:first-of-type {
+    grid-column: full;
+  }
+
+  .case {
+    grid-column: feature;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: var(--primary-color-03);
+    border-radius: var(--box-border-radius);
+    padding: 3.3125rem 3.75rem;
+    margin-block-start: -2rem;
+
+    > :first-child {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-m);
+
+      * {
+        color: var(--secondary-color-02);
+      }
+    }
+  }
+
+  .content {
+    grid-column: content;
+    margin-block-start: var(--space-l);
+  }
+
+  ul {
+    margin-block: var(--space-m);
+  }
+
+  h4 + p {
+    margin-top: 0.4rlh;
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  figure {
+    padding: var(--space-s);
+    img {
+      border-radius: 0;
+    }
+  }
+</style>

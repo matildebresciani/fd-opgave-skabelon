@@ -1,0 +1,24 @@
+---
+import TeamList from "../components/TeamList.astro";
+import ColoredHeading from "../components/ColoredHeading.astro";
+---
+
+<section>
+  <div>
+    <ColoredHeading variant="yellow">Our Team</ColoredHeading>
+    <h2>We champion the bold to achieve the extraordinary</h2>
+    <p>
+      Our success stems from the synergy between dedicated teams and our valued
+      clients. We prioritize a company culture that fosters exceptional
+      productivity, ensures customer satisfaction, and promotes mutual respect
+      among all team members.
+    </p>
+  </div>
+  <TeamList antal="3" />
+</section>
+
+<style>
+  div {
+    max-width: 65ch;
+  }
+</style>

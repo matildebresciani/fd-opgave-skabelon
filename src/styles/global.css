@@ -1,1 +1,210 @@
 /* Globale styles her */
+
+:root {
+    --checkmark-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="%234EAF4E" d="M176.49 95.51a12 12 0 0 1 0 17l-56 56a12 12 0 0 1-17 0l-24-24a12 12 0 1 1 17-17L112 143l47.51-47.52a12 12 0 0 1 16.98.03M236 128A108 108 0 1 1 128 20a108.12 108.12 0 0 1 108 108m-24 0a84 84 0 1 0-84 84a84.09 84.09 0 0 0 84-84"/></svg>');
+    --dot-pattern: url('/img/dot-pattern.svg');
+
+    --content-width: 75rem;
+
+    /* Fonts */
+    --heading-font: "Cabin", sans-serif;
+    --text-font: "Lato", sans-serif;
+
+    /* Farver */
+    --primary-color-01: #FFCC4A; 
+    --primary-color-02: #4EAF4E; 
+    --primary-color-03: #181818; 
+    --secondary-color-01: #F5F5F5; 
+    --secondary-color-02: #FFFFFF; 
+    --text-black: #1C1C1C;
+    --text-grey: #595566; 
+
+    /* Hover Farver */
+    --hover-black: #747474;
+    --hover-white:#cbcbcb;
+    --hover-yellow:#ffe5a2; 
+
+    /* Font-sizes */
+    --step-0: clamp(1rem, 0.9545rem + 0.2273vw, 1.125rem);
+    --step-1: clamp(1.2rem, 1.091rem + 0.5448vw, 1.4996rem);
+    --step-2: clamp(1.44rem, 1.2367rem + 1.0164vw, 1.999rem);
+    --step-3: clamp(1.728rem, 1.3874rem + 1.703vw, 2.6647rem);
+    --step-4: clamp(2.0736rem, 1.536rem + 2.688vw, 3.552rem);
+
+    /* Font weights */
+    --font-weight-bold: 600;
+    --font-weight-normal: 400;
+
+    /* Line heights */
+    --lh-heading1: 1.16;
+    --lh-paragraph: 1.475;
+    --lh-quote: 1.4;
+    --lh-ul: 2.145;
+--lh-li: 1.16;
+
+    /* Spacing */
+    --space-3xs: clamp(0.3125rem, 0.2255rem + 0.4348vw, 0.5625rem);
+    --space-2xs: clamp(0.5625rem, 0.3668rem + 0.9783vw, 1.125rem);
+    --space-xs: clamp(0.875rem, 0.5924rem + 1.413vw, 1.6875rem);
+    --space-s: clamp(1.125rem, 0.7337rem + 1.9565vw, 2.25rem);
+    --space-m: clamp(1.6875rem, 1.1005rem + 2.9348vw, 3.375rem);
+    --space-l: clamp(2.25rem, 1.4674rem + 3.913vw, 4.5rem);
+    --space-xl: clamp(3.375rem, 2.2011rem + 5.8696vw, 6.75rem);
+    --space-2xl: clamp(4.5rem, 2.9348rem + 7.8261vw, 9rem);
+    --space-3xl: clamp(6.75rem, 4.4022rem + 11.7391vw, 13.5rem);
+
+    /* Border-radius */
+    --btn-border-radius: 42px;
+    --box-border-radius: 20px;
+    --icon-border-radius: 50%;
+
+    /* Transitions */
+    --hover-transition: ease 0.4s; 
+    --hover-transform: scale(1.02);
+
+}
+
+* {
+    font-family: var(--text-font);
+}
+
+
+h1, h2, h3, h4, li {
+    font-family: var(--heading-font);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--lh-heading1);
+}
+
+
+h1 {
+    font-size: var(--step-4);
+    line-height: var(--lh-heading1);
+}
+
+h2 {
+    font-size: var(--step-3);
+    margin-block-start: var(--space-2xs);
+
+    & + * {
+        margin-block-start: var(--space-3xs);
+    }
+}
+
+h3 {
+    font-size: var(--step-2);
+}
+
+h4 {
+    font-size: var(--step-1);
+}
+
+p, li {
+    font-size: var(--step-0);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--lh-paragraph);
+    max-width: 65ch;
+    color: var(--text-grey);
+}
+
+
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--icon-border-radius);
+}
+
+img {
+    border-radius: var(--box-border-radius);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+section {
+    padding-block: var(--space-l);
+
+
+}
+
+.flow-space {
+
+    > * + * {
+        margin-top: var(--flow-space, 0.5rlh);
+    }
+    
+    h2 {
+    --flow-space: 2rlh;
+    }
+
+    h3, p + p {
+    --flow-space: 1rlh;
+    }
+
+   h3 + * {
+    --flow-space: 0.25rlh;
+    }
+
+ 
+}
+
+
+
+ul {
+    display: grid;
+    gap: var(--space-2xs);
+    line-height: var(--lh-ul);
+    margin-block-start: var(--space-xs);
+}
+
+li {
+    line-height: var(--lh-li);
+}
+
+.checked-ul {
+
+
+    li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-2xs);
+      }
+    
+      li::before {
+        content: "";
+        width: 1.6rem;
+        height: var(--lh-li);
+        background: var(--checkmark-icon) 50% 50% / 100% auto no-repeat;
+      }
+}
+
+figure {
+    z-index: 2;
+}
+
+.pseudo {
+    position: relative;
+    /* margin-inline: auto; */
+    /* margin: 3rem; */
+    display: block;
+    z-index: 2;
+  }
+
+  .pseudo::before {
+    content: "";
+    background: var(--primary-color-02);
+    position: absolute;
+    z-index: -1;
+    border-radius: 1.25rem;
+    height: 10.25rem;
+  }
+
+

@@ -1,0 +1,55 @@
+---
+const { url, variant } = Astro.props;
+---
+
+<a href={url} data-variant={variant}>
+  <slot />
+</a>
+
+<style>
+  @layer components {
+    a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: fit-content;
+      border-radius: var(--btn-border-radius);
+      padding: 16px 37px;
+      font-weight: var(--font-weight-bold);
+      transition: var(--hover-transition);
+    }
+
+    [data-variant="yellow"] {
+      background-color: var(--primary-color-01);
+      color: var(--primary-color-03);
+
+      &:hover {
+        background-color: var(--hover-yellow);
+      }
+    }
+
+    [data-variant="black"] {
+      background-color: var(--primary-color-03);
+      color: var(--secondary-color-02);
+      border: 2px solid var(--primary-color-03);
+
+      &:hover {
+        background-color: var(--secondary-color-02);
+        color: var(--primary-color-03);
+        border: 2px solid var(--primary-color-03);
+      }
+    }
+
+    [data-variant="white"] {
+      background-color: var(--secondary-color-02);
+      color: var(--primary-color-03);
+      border: 2px solid var(--secondary-color-02);
+
+      &:hover {
+        background-color: var(--primary-color-03);
+        color: var(--secondary-color-02);
+      }
+    }
+  }
+</style>

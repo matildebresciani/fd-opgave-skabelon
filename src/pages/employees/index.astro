@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero2 from "../../components/Hero2.astro";
+import TeamList from "../../components/TeamList.astro";
+import Subscribe from "../../components/Subscribe.astro";
+import Button from "../../components/Button.astro";
+---
+
+<Layout title="Team">
+  <Hero2
+    title="Team"
+    heading="The Consultors"
+    backgroundImage="/img/team-hero.jpg"
+  />
+  <section>
+    <div class="content">
+      <div>
+        <h2>Meet Our Great Team</h2>
+        <p>
+          Welcome to our amazing team! We are a group of passionate individuals
+          dedicated to excellence and innovation. Each member brings unique
+          skills and experiences, working together to achieve our goals. Join us
+          as we embark on exciting projects and create lasting impacts.
+        </p>
+      </div>
+      <Button variant="black">Join our team</Button>
+    </div>
+  </section>
+  <TeamList />
+  <Subscribe />
+</Layout>
+
+<style>
+  section {
+    padding-block-end: 0;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    :first-child {
+      flex-direction: column;
+    }
+  }
+</style>

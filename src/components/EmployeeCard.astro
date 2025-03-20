@@ -1,0 +1,83 @@
+---
+//@ts-nocheck
+import ColoredHeading from "./ColoredHeading.astro";
+
+const { employee, index } = Astro.props;
+---
+
+<li id={employee.id} class="employee-card">
+  <a href=`employees/${employee.slug}`>
+    <figure>
+      <img src={employee.img} alt="" />
+      <ColoredHeading type="position" variant={index === 0 ? "yellow" : "black"}
+        >{employee.title}</ColoredHeading
+      >
+    </figure>
+    <div>
+      <h4>{employee.name}</h4>
+      <p>{employee.description}</p>
+    </div>
+
+    <ul role="list" class="icon-container">
+      {
+        employee.social_links.map((link) => (
+          <li>
+            <a href={link.url} set:html={link.icon} />
+          </li>
+        ))
+      }
+    </ul>
+  </a>
+</li>
+
+<style>
+  .employee-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    flex-basis: min(65%, 400px);
+    flex-shrink: 0;
+    transition: var(--hover-transition);
+
+    &:hover {
+      transform: var(--hover-transform);
+    }
+  }
+
+  .icon-container {
+    display: flex;
+    flex-direction: row;
+    margin-block-start: var(--space-3xs);
+
+    a {
+      color: var(--primary-color-03);
+      svg {
+      }
+    }
+  }
+
+  h4 {
+    color: var(--text-black);
+    margin-block-start: var(--space-xs);
+  }
+
+  p {
+    margin-block-start: var(--space-3xs);
+  }
+
+  figure {
+    display: grid;
+    > * {
+      grid-area: 1/1;
+
+      &:last-child {
+        justify-self: end;
+        align-self: end;
+        margin: 1.1rem 0.7rem;
+      }
+    }
+  }
+</style>

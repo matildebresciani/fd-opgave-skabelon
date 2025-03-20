@@ -1,0 +1,142 @@
+---
+//@ts-nocheck
+
+const financialProjectionsData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/financialProjections"
+).then((response) => response.json());
+
+import ScrollingContainer from "../components/ScrollingContainer.astro";
+import ArrowRight from "../icons/arrow--right.svg";
+import ArrowLeft from "../icons/arrow-left.svg";
+---
+
+<section>
+  <div class="content">
+    <div class="text-container">
+      <h1>{financialProjectionsData.title}</h1>
+      <p>
+        {financialProjectionsData.subtitle}
+      </p>
+    </div>
+    <div class="arrow-container">
+      <div id="left-arrow" class="left-arrow">
+        <ArrowLeft />
+      </div>
+      <div id="right-arrow" class="right-arrow">
+        <ArrowRight />
+      </div>
+    </div>
+  </div>
+
+  <ScrollingContainer data={financialProjectionsData.values} />
+</section>
+<style>
+  section {
+    background-color: var(--secondary-color-01);
+    padding-block: var(--space-l);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .arrow-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: var(--space-2xs);
+  }
+
+  .left-arrow,
+  .right-arrow {
+    width: 70.465px;
+    height: 70.465px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-radius: var(--icon-border-radius);
+    transition: var(--hover-transition);
+  }
+
+  .left-arrow {
+    color: var(--secondary-color-02);
+    background-color: var(--primary-color-03);
+
+    &:hover {
+      background-color: var(--hover-black);
+    }
+  }
+
+  .right-arrow {
+    color: var(--primary-color-03);
+    background-color: var(--primary-color-01);
+    &:hover {
+      background-color: var(--hover-yellow);
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll("#card-list li");
+    let activeIndex = 0;
+    let shouldScroll = false; // Tilføj shouldScroll variabel
+
+    function updateActiveCard(newIndex: number) {
+      // Fjern 'active' fra nuværende kort
+      cards[activeIndex].classList.remove("active");
+
+      // Opdater index
+      activeIndex = newIndex;
+
+      // Tilføj 'active' til det nye kort
+      cards[activeIndex].classList.add("active");
+
+      // Scroll kun hvis brugeren interagerer (shouldScroll er true)
+      if (shouldScroll) {
+        cards[activeIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center", // Centrere elementet i visningen
+        });
+      }
+    }
+
+    // Event listener for klik på kortene
+    cards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        shouldScroll = true; // Brugeren interagerer, tillad scroll
+        updateActiveCard(index);
+      });
+    });
+
+    // Event listeners for pilene
+    const leftArrow = document.getElementById("left-arrow");
+    const rightArrow = document.getElementById("right-arrow");
+
+    leftArrow?.addEventListener("click", function () {
+      if (activeIndex > 0) {
+        shouldScroll = true; // Brugeren interagerer, tillad scroll
+        updateActiveCard(activeIndex - 1);
+      }
+    });
+
+    rightArrow?.addEventListener("click", function () {
+      if (activeIndex < cards.length - 1) {
+        shouldScroll = true; // Brugeren interagerer, tillad scroll
+        updateActiveCard(activeIndex + 1);
+      }
+    });
+
+    // Start med at markere det første kort som aktivt, men uden at scrolle
+    updateActiveCard(activeIndex);
+  });
+</script>

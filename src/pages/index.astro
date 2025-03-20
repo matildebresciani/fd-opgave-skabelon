@@ -1,12 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import Experience from "../components/Experience.astro";
-import CoreValues from "../components/CoreValues.astro";
+import Hero from "../sections/Hero.astro";
+import WhatToExpect from "../sections/WhatToExpect.astro";
+import Experience from "../sections/Experience.astro";
+import CoreValues from "../sections/CoreValues.astro";
+import Contact from "../sections/Contact.astro";
+import FinancialProjections from "../sections/FinancialProjections.astro";
 ---
 
-<Layout>
+<Layout title="AskExperts">
   <Hero />
+  <WhatToExpect />
+  <FinancialProjections />
+  <Experience />
+  <CoreValues variant="dark" />
+  <Contact />
 </Layout>
 
 <style></style>

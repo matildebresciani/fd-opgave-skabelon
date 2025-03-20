@@ -1,0 +1,61 @@
+---
+import Button from "./Button.astro";
+---
+
+<section>
+  <div class="subscribe">
+    <div>
+      <h3>Subscribe Our Newsletter</h3>
+      <p>
+        Build stronger Customer Relationships with <strong>Consultalk</strong>
+      </p>
+    </div>
+    <div class="subscribe-input">
+      <input type="email" name="" id="" placeholder="your mail adress" />
+      <Button variant="yellow">Subscribe</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .subscribe {
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      position: absolute;
+    }
+
+    &::after {
+      position: absolute;
+    }
+  }
+
+  .subscribe,
+  .subscribe-input {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .subscribe {
+    justify-content: space-between;
+    align-items: center;
+    max-height: 15.75rem;
+    background-color: var(--primary-color-03);
+    border-radius: var(--box-border-radius);
+    padding: var(--space-l);
+
+    h3,
+    p {
+      color: var(--secondary-color-02);
+    }
+
+    .subscribe-input {
+      gap: var(--space-2xs);
+      input {
+        background-color: var(--secondary-color-02);
+        border-radius: var(--btn-border-radius);
+      }
+    }
+  }
+</style>

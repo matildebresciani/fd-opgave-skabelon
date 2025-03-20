@@ -1,0 +1,123 @@
+---
+//@ts-nocheck
+const coreValuesData = await fetch(
+  "https://frontend-design-theme.netlify.app/api/coreValues"
+).then((response) => response.json());
+
+import ColoredHeading from "../components/ColoredHeading.astro";
+import Button from "../components/Button.astro";
+import ArrowRight from "../icons/arrow--right.svg";
+
+const { variant } = Astro.props;
+---
+
+<section data-variant={variant}>
+  <ColoredHeading variant="yellow">growing with our clients</ColoredHeading>
+  <div class="content">
+    <div>
+      <h2>{coreValuesData.title}</h2>
+      <p>{coreValuesData.subtitle}</p>
+    </div>
+    <Button variant={variant === "dark" ? "white" : "black"}
+      >{coreValuesData.button.text}</Button
+    >
+  </div>
+  <ul class="cards" role="list">
+    {
+      coreValuesData.values.map(async (item) => {
+        const Icon = await import(`../icons/${item.icon}.svg`).then(
+          (module) => module.default
+        );
+
+        return (
+          <li class="card">
+            <div class="icon">
+              <Icon />
+            </div>
+            <h4>{item.title}</h4>
+            <p>{item.description}</p>
+            <a href={item.link.url}>
+              {item.link.text} <ArrowRight class="arrow-right" />
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
+
+<style>
+  [data-variant="dark"] {
+    background-color: var(--primary-color-03);
+
+    .content {
+      h2,
+      p {
+        color: var(--secondary-color-02);
+      }
+    }
+  }
+
+  [data-variant="light"] {
+    background-color: var(--secondary-color-01);
+
+    .content {
+      h2,
+      p {
+        color: var(--primary-color-03);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cards {
+    display: flex;
+    gap: var(--space-s);
+    align-items: flex-start;
+
+    h4,
+    a {
+      color: black;
+      margin-block-start: var(--space-2xs);
+    }
+
+    a {
+      font-weight: var(--font-weight-bold);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3xs);
+      transition: var(--hover-transition);
+
+      .arrow-right {
+        width: 0.81675rem;
+        height: 0.66825rem;
+      }
+
+      &:hover {
+        color: var(--hover-black);
+      }
+    }
+
+    .card {
+      background-color: var(--secondary-color-02);
+      border-radius: var(--box-border-radius);
+      padding: var(--space-s) var(--space-xs);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xs);
+
+      .icon {
+        color: var(--secondary-color-02);
+        background-color: var(--primary-color-03);
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+</style>
