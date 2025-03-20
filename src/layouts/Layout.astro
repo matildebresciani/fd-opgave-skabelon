@@ -30,7 +30,17 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  body {
+
+
+  @media (max-width: 768px) {
+    body {
+      display:grid;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 769px) {
+    body {
     --content-half: calc(var(--content-width) / 2);
     display: grid;
     /* grid-template-columns: 1fr minmax(0, 75rem) 1fr; */
@@ -71,5 +81,6 @@ const { title } = Astro.props;
       /* display: grid;
       grid-template-columns: subgrid; */
     }
+  }
   }
 </style>

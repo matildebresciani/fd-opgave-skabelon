@@ -42,9 +42,9 @@ const { myData } = Astro.props;
                 }
               </ul>
             </div>
-            <p>{myData.title}</p>
+            <p >{myData.title}</p>
           </div>
-          <p>{myData.description_long}</p>
+          <p class="description-long">{myData.description_long}</p>
         </div>
         <div class="line2"></div>
         <div class="past-experience">
@@ -87,8 +87,17 @@ const { myData } = Astro.props;
 
     ul {
       margin: 0;
+
+      li {
+        transition: var(--hover-transition);
+
+&:hover {
+  transform: scale(1.1);
+}
+      }
       a {
         color: var(--primary-color-03);
+ 
       }
     }
 
@@ -105,11 +114,10 @@ const { myData } = Astro.props;
     width: 100%;
   }
 
-  .employee-info p:last{
-   {
-      margin-block-start: 5rem;
-    }
+  .description-long {
+    margin-block-start: var(--space-s);
   }
+
 
   .past-experience {
     display: grid;
@@ -134,6 +142,7 @@ const { myData } = Astro.props;
     z-index: -1;
     border-radius: 10px;
   }
+  
 
   .pseudo::after {
     content: "";

@@ -4,7 +4,7 @@ import Button from "./Button.astro";
 
 <section>
   <div class="subscribe">
-    <div>
+    <div class="text">
       <h3>Subscribe Our Newsletter</h3>
       <p>
         Build stronger Customer Relationships with <strong>Consultalk</strong>
@@ -21,15 +21,35 @@ import Button from "./Button.astro";
   .subscribe {
     overflow: hidden;
     position: relative;
+    display: block;
+
+    &::before, &::after {
+      position: absolute;
+      content: "";
+    }
 
     &::before {
-      position: absolute;
+    background: var(--primary-color-02);
+    z-index: 1;
+    border-radius: 1.25rem;
+    height: 10.25rem;
+    width:10.25rem;
+    right: -3rem;
+    bottom: -6rem;
+    transform: rotate(45deg);
     }
 
     &::after {
-      position: absolute;
+      background-image: var(--dot-pattern);
+      height: 20rem;
+      width:20rem;
+      right: -8rem;
+    top: -10rem;
+    transform: rotate(43deg);
+    z-index:0;
     }
   }
+
 
   .subscribe,
   .subscribe-input {
@@ -45,9 +65,20 @@ import Button from "./Button.astro";
     border-radius: var(--box-border-radius);
     padding: var(--space-l);
 
+.text {
+    display: grid;
+    gap: var(--space-3xs);
+}
+
+    * {
+        z-index: 2;
+    }
+
     h3,
     p {
       color: var(--secondary-color-02);
+
+
     }
 
     .subscribe-input {
@@ -55,6 +86,7 @@ import Button from "./Button.astro";
       input {
         background-color: var(--secondary-color-02);
         border-radius: var(--btn-border-radius);
+        padding-inline: 2rem;
       }
     }
   }
