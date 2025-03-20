@@ -23,6 +23,8 @@ console.log(employeesData);
 ## Reflekter kort men fagligt over din løsning med henblik på udfordringerne og successerne ved opgaven.
 
 Jeg synes jeg er kommet godt i mål med mange ting, men jeg ville ønske der have været mere tid (bare en dag mere kunne have været brugbart).
+Jeg havde i hvertfald ikke nok tid til at kunne gøre det ordentligt responsivt.
+
 Nogle af udfordringerne var at det var en meget stor opgave der var uoverskuelig at gå i gang med, men når man først var inde i det og havde sat mange af tingene op var det nemmere at arbejde med. Det var også svært at få tilpasset de forskellige eksempler og tidligere opgaver vi har lavet på forløbet, til lige netop den her opgave.
 
 ## Fremhæv specifikke kodestumper, der illustrerer brugen af forskellige teknikker og principper (gerne fra undervisningen).
