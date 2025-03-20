@@ -6,7 +6,7 @@ const { employee, index } = Astro.props;
 ---
 
 <li id={employee.id} class="employee-card">
-  <a href=`employees/${employee.slug}`>
+  <a href=`/employees/${employee.slug}`>
     <figure>
       <img src={employee.img} alt="" />
       <ColoredHeading type="position" variant={index === 0 ? "yellow" : "black"}
