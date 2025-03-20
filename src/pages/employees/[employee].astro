@@ -65,7 +65,8 @@ const { myData } = Astro.props;
 
     .info-container {
       display: grid;
-      gap: var(--space-s);
+      align-content: start;
+      /* gap: var(--space-s); */
     }
   }
 
@@ -112,6 +113,7 @@ const { myData } = Astro.props;
     border-top: 1px solid #c1c1c1;
     height: 1px;
     width: 100%;
+    margin-block: var(--space-s);
   }
 
   .description-long {
@@ -122,6 +124,7 @@ const { myData } = Astro.props;
   .past-experience {
     display: grid;
     gap: var(--space-2xs);
+    align-content: start;
   }
 
   .pseudo {
